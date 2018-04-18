@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MenuStack"
         mc:Ignorable="d"
-        Title="CURRENT_SETTINGS" Height="650" Width="800">
+        Title="CURRENT_SETTINGS" Height="1000" Width="800">
     
     <Border Margin="5" Padding="5" Background="Aqua"
 BorderBrush="SteelBlue" BorderThickness="3,5,3,5" CornerRadius="50"
@@ -13,7 +13,7 @@ VerticalAlignment="Top">
         <ScrollViewer>
             <!--<GroupBox Header="User Registration" Padding="5"
 Margin="5" VerticalAlignment="Top" >-->
-                <Grid Style="{StaticResource gridStyle}" Validation.Error="ValidationError">
+                <Grid Style="{StaticResource gridStyle}" Validation.Error="ValidationError" Height="990" Width="460">
                     <Grid.RowDefinitions>
                         <RowDefinition  Height = "Auto"></RowDefinition>
                         <RowDefinition  Height = "Auto"></RowDefinition>
@@ -24,8 +24,9 @@ Margin="5" VerticalAlignment="Top" >-->
                         <RowDefinition  Height = "Auto"></RowDefinition>
                         <RowDefinition  Height = "Auto"></RowDefinition>
                         <RowDefinition  Height = "Auto"></RowDefinition>
+                        <RowDefinition  Height = "100"></RowDefinition>
                         <RowDefinition  Height = "Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
 
                         <ColumnDefinition Width = "Auto"></ColumnDefinition>
@@ -36,36 +37,58 @@ Margin="5" VerticalAlignment="Top" >-->
                         <Label Style="{StaticResource headingStyle}"  HorizontalAlignment="Center">User Registration</Label>
                     </WrapPanel>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource labelStyle}">FIRST NAME</Label>
-                    <TextBox   Grid.Row="1" Grid.Column="1" Style="{StaticResource textStyle}" Name="textBox1" 
-    Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
-                        <TextBox.Text>
-                            <Binding Path="Name" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                    <TextBox   Grid.Row="1" Grid.Column="1" Style="{StaticResource textStyle}" Name="txtfirstName" 
+     Text="{Binding FirstName,UpdateSourceTrigger=PropertyChanged}">
+                    <!--Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" -->
+                        <!--<TextBox.Text>
+                            --><!-- Row Focus --><!--
+                        <Binding Path="FirstName" Mode="TwoWay" UpdateSourceTrigger="Default">
                                 <Binding.ValidationRules>
                                     <local:FirstNameValidator></local:FirstNameValidator>
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
+                        </TextBox.Text>-->
                     </TextBox>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}">LASTNAME</Label>
-                    <TextBox  Grid.Row="2" Grid.Column="1" Style="{StaticResource textStyle}"></TextBox>
+                <TextBox  Grid.Row="2" Grid.Column="1" Style="{StaticResource textStyle}" Name="txtLastName" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource labelStyle}">DOB</Label>
-                    <DatePicker Grid.Row="3" Grid.Column="1" Style="{StaticResource datepickerStyle}"></DatePicker>
+                <DatePicker Grid.Row="3" Grid.Column="1" Style="{StaticResource datepickerStyle}" Name="dtDOB" SelectedDate="{Binding DOB,UpdateSourceTrigger=PropertyChanged}"></DatePicker>
                     <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource labelStyle}">GENDER</Label>
                     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1"  >
-                        <RadioButton  GroupName="GENDERNAME" x:Name="MALE" Content="MALE" Style="{StaticResource radioStyle}" Width="81"></RadioButton>
-                        <RadioButton  GroupName="GENDERNAME" x:Name="FEMALE" Content="FEMALE" Style="{StaticResource radioStyle}" Width="81"></RadioButton>
-                        <RadioButton  GroupName="GENDERNAME"  x:Name="TRANSGENDER" Content="TRANSGENDER" Style="{StaticResource radioStyle}" Margin="10,10.8,0,10.6"/>
+                    <RadioButton   GroupName="GENDERNAME" x:Name="MALE" Content="MALE" Style="{StaticResource radioStyle}" Width="81" ></RadioButton>
+                    <RadioButton  GroupName="GENDERNAME" x:Name="FEMALE" Content="FEMALE" Style="{StaticResource radioStyle}" Width="81"  ></RadioButton>
+                    <RadioButton  GroupName="GENDERNAME"  x:Name="TRANSGENDER" Content="TRANSGENDER" Style="{StaticResource radioStyle}" Margin="10,10.8,0,10.6"  />
                     </WrapPanel>
                     <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource labelStyle}">STATE</Label>
-                    <ComboBox Grid.Row="5" Grid.Column="1" Name="stateList" Style="{StaticResource comboStyle}"></ComboBox>
+                <ComboBox Grid.Row="5" Grid.Column="1" Name="stateList" Style="{StaticResource comboStyle}" SelectedValue="{Binding Gender,UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
                     <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource labelStyle}">EMAIL</Label>
-                    <TextBox  Grid.Row="6" Grid.Column="1" Style="{StaticResource textStyle}"></TextBox>
-                    <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource labelStyle}">PASSWORD</Label>
-                    <PasswordBox Grid.Row="7" Grid.Column="1" Style="{StaticResource passwdStyle}"></PasswordBox>
+                <TextBox  Grid.Row="6" Grid.Column="1" Style="{StaticResource textStyle}"  Name="txtEmail" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}">
+                    <!--<TextBox.Text>
+                        <Binding Path="Email" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <local:EmailValidator></local:EmailValidator>
+                            </Binding.ValidationRules>
+                        </Binding>
+
+                    </TextBox.Text>-->
+                    <!--Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"-->
+                        
+                        
+                    </TextBox>
+                <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource labelStyle}" >PASSWORD</Label>
+                <PasswordBox Grid.Row="7" Grid.Column="1" Style="{StaticResource passwdStyle}" Name="txtPasswd" local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></PasswordBox>
                     <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource labelStyle}">ADDRESS</Label>
-                    <TextBox Grid.Row="8" Grid.Column="1" Height="50" Style="{StaticResource textStyle}"></TextBox>
-                    <WrapPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2">
-                        <Button Style="{StaticResource btnStyle}" Click="ButtonBase_OnClick">Save</Button>
+
+                <TextBox Grid.Row="8" Grid.Column="1" Height="50" TextWrapping="Wrap"  Style="{StaticResource textStyle}" Name="txtAddress" Text="{Binding Address,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                <Button Grid.Row="9" Grid.Column="0"   Style="{StaticResource updatebtnStyle}" Click="Button_Click" >Upload Photo</Button>
+                <Image  Grid.Row="9" Grid.Column="1"  Name="imgPhoto" Width="100" Height="100" 
+         ></Image>
+
+                <WrapPanel Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Button Style="{StaticResource submitbtnStyle}" Command="{Binding SaveCommand}" CommandParameter="{Binding .}">Save
+                        
+                        </Button>
                         <Button Style="{StaticResource btnStyle}">Reset</Button>
                         <Button Style="{StaticResource btnStyle}">Cancel</Button>
                     </WrapPanel>
