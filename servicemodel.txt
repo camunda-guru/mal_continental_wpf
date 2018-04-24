@@ -1,0 +1,37 @@
+ <services>
+      
+      
+        <service name="CricketScoreWCF.CricketScore" behaviorConfiguration="ServiceBehavior">
+
+          <endpoint binding="webHttpBinding" contract="CricketScoreWCF.ICricketScore" behaviorConfiguration="web">
+            <identity>
+              <dns value="localhost"/>
+            </identity>
+
+          </endpoint>
+        </service>
+
+      </services>
+      <behaviors>
+        <serviceBehaviors >
+          <behavior name="ServiceBehavior">
+            <!-- To avoid disclosing metadata information, set the values below to false before deployment -->
+            <serviceMetadata httpGetEnabled="true"/>
+            <!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information -->
+            <serviceDebug includeExceptionDetailInFaults="false"/>
+          </behavior>
+        </serviceBehaviors>
+
+        <endpointBehaviors>
+          <behavior name="web">
+
+            <webHttp/>
+
+          </behavior>
+
+        </endpointBehaviors>
+
+      </behaviors>
+      <serviceHostingEnvironment  multipleSiteBindingsEnabled="true" />
+   
+  </system.serviceModel>
